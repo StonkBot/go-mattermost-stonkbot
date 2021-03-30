@@ -1,0 +1,11 @@
+api_server = "http://localhost:8065"
+bot_id = ""
+bot_token = ""
+protocol = "http"
+team = "test"
+ws_server = "ws://localhost:8065"
+
+[stonks]
+  channels = []
+  emojis = ["stonks"]
+  maxdelay = 10
