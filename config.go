@@ -27,7 +27,8 @@ func readConfig() {
 
 	viper.SetDefault("stonks.channels", [0]string{})
 	viper.SetDefault("stonks.emojis", [1]string{"stonks"})
-	viper.SetDefault("stonks.maxdelay", 10)
+	viper.SetDefault("stonks.mindelay", 10)
+	viper.SetDefault("stonks.maxdelay", 30)
 
 	err := viper.ReadInConfig()
 	if err != nil { // Handle errors reading the config file
@@ -37,6 +38,10 @@ func readConfig() {
 
 	if viper.GetString("bot_id") == "" || viper.GetString("bot_token") == "" {
 		log.Fatal("No bot id or token configured")
+	}
+
+	if viper.GetInt("stonks.mindelay") > viper.GetInt("stonks.maxdelay") {
+		log.Fatal("Stonks mindelay is greater than maxdelay")
 	}
 
 }
