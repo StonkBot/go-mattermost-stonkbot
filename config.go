@@ -13,8 +13,8 @@ func readConfig() {
 
 	viper.SetConfigType("toml")
 	viper.SetConfigName("config")
-	// viper.AddConfigPath("/etc/stonks")
-	// viper.AddConfigPath("/$HOME/.config/stonks")
+	viper.AddConfigPath("/etc/stonks")
+	viper.AddConfigPath("$HOME/.config/stonks")
 	viper.AddConfigPath(".")
 
 	viper.SetDefault("api_server", "http://localhost:8065")
