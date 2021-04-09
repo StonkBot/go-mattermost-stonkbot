@@ -14,7 +14,7 @@ func LoginAsTheBotUser() {
 	client.SetToken(viper.GetString("bot_token"))
 
 	if user, resp := client.GetUser(viper.GetString("bot_id"), ""); resp.Error != nil {
-		log.WithError(resp.Error).Fatal("There was a problem getting Bot User")
+		log.WithError(resp.Error).Fatal("There was a problem getting Bot User. Make sure you use a user id and not the token id")
 	} else {
 		botUser = user
 	}

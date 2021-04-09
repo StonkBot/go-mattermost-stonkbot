@@ -1,6 +1,5 @@
-bot_id = ""
-bot_token = ""
-protocol = "http"
+bot_id = "" # The user id the token belongs to (not the token id)
+bot_token = "" # The personal access token
 team = "botsample"
 ws_server = "ws://localhost:8065"
 api_server = "http://localhost:8065"

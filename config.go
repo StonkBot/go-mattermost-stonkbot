@@ -20,7 +20,6 @@ func readConfig() {
 	viper.SetDefault("api_server", "http://localhost:8065")
 	viper.SetDefault("ws_server", "ws://localhost:8065")
 	viper.SetDefault("team", "test")
-	viper.SetDefault("protocol", "http")
 
 	viper.SetDefault("bot_id", "")
 	viper.SetDefault("bot_token", "")

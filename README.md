@@ -9,11 +9,12 @@ emphasize won deals so they stand out more.
 
 Add the stonks emoji as a custom emoji in Mattermost if wanted. Or use any other built-in or custom emoji you want.
 
-Also, generate a personal access token in Mattermost. Refer to the [Mattermost documentation](https://docs.mattermost.com/developer/personal-access-tokens.html#contents).
+Generate a personal access token in Mattermost. Refer to the [Mattermost documentation](https://docs.mattermost.com/developer/personal-access-tokens.html#contents).
+Get your user id, either through a sysadmin or I dunno, just ask an admin :)
 
 ### Manual installation
 
-Download the latest release from [GitHub Stonksbot releases](https://github.com/StonkiBot/go-mattermost-stonksbot/releases/latest)
+Download the latest release from [GitHub Stonksbot releases](https://github.com/StonkBot/go-mattermost-stonkbot/releases/latest)
 to a location you like. Then extract the binaries and the sample configuration for the archive.
 
 You need the create a mattermost token. Then, configure your bot with this information. Add Channels and Emojis as you need.
@@ -22,7 +23,7 @@ Now you're ready to start your bot: `./go-mattermost-stonksbot`
 
 ### Installation from package
 
-Download the package from [GitHub Stonksbot releases](https://github.com/StonkiBot/go-mattermost-stonksbot/releases/latest)
+Download the package from [GitHub Stonksbot releases](https://github.com/StonkBot/go-mattermost-stonkbot/releases/latest)
 in the desired format and install it.
 
 Create the config file. An example is installed in `/etc/stonks/config.toml.example`.
