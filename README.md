@@ -33,6 +33,12 @@ Copy the example to one of the following paths and add your mattermost token and
 * $HOME/.config/stonks/config.toml
 * ./config.toml
 
+Now start or enable the service
+
+```bash
+systemctl --user start stonkbot
+```
+
 
 ## TODOs
 

@@ -37,6 +37,9 @@ nfpms:
       - src: config.toml.example
         dst: /etc/stonks/config.toml.example
         type: config
+      - src: stonkbot.service
+        dst: /usr/lib/systemd/user/stonkbot.service
+        type: config
 
 
 checksum:

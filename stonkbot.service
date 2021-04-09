@@ -1,0 +1,10 @@
+[Unit]
+Description=Stonk Bot
+
+[Service]
+ExecStart=/usr/bin/stonkbot
+Restart=always
+
+[Install]
+WantedBy=default.target
+
