@@ -17,6 +17,8 @@ func readConfig() {
 	viper.AddConfigPath("$HOME/.config/stonks")
 	viper.AddConfigPath(".")
 
+	viper.SetDefault("debug", false)
+
 	viper.SetDefault("api_server", "http://localhost:8065")
 	viper.SetDefault("ws_server", "ws://localhost:8065")
 	viper.SetDefault("team", "test")

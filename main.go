@@ -27,6 +27,10 @@ func main() {
 	readConfig()
 	writeConfig()
 
+	if viper.GetBool("debug") {
+		log.SetLevel(log.DebugLevel)
+	}
+
 	client = model.NewAPIv4Client(viper.GetString("api_server"))
 
 	// Lets test to see if the mattermost server is up and running

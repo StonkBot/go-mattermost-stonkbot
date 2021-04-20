@@ -28,7 +28,7 @@ func HandleMsgFromStonksChannel(event *model.WebSocketEvent) {
 	re := regexp.MustCompile(`^ \*\*Deal won by(?:$|\W)`)
 
 	if Contains(viper.GetStringSlice("stonks.channels"), channel.Name) {
-		log.Info("Channel is contained in stringSlice from config")
+		log.Debug("Channel is contained in stringSlice from config")
 
 		post := model.PostFromJson(strings.NewReader(event.Data["post"].(string)))
 		if post == nil {

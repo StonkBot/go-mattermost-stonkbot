@@ -3,6 +3,7 @@ bot_token = "" # The personal access token
 team = "botsample"
 ws_server = "ws://localhost:8065"
 api_server = "http://localhost:8065"
+debug = false
 
 [stonks]
   channels = []
