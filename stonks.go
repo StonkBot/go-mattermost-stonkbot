@@ -19,38 +19,29 @@ func HandleMsgFromStonksChannel(event *model.WebSocketEvent) {
 		return
 	}
 
+	channel, resp := client.GetChannel(event.Broadcast.ChannelId, "")
+	if resp.Error != nil {
+		log.WithField("channel_id", event.Broadcast.ChannelId).WithError(resp.Error).Error("Failed to get channel by ID")
+		return
+	}
+
 	re := regexp.MustCompile(`^ \*\*Deal won by(?:$|\W)`)
 
-	for _, allowedChannel := range viper.GetStringSlice("stonks.channels") {
-		channel, resp := client.GetChannelByName(allowedChannel, botTeam.Id, "")
-		if resp.Error != nil {
+	if Contains(viper.GetStringSlice("stonks.channels"), channel.Name) {
+		log.Info("Channel is contained in stringSlice from config")
 
-			log.WithFields(log.Fields{
-				"channel": allowedChannel,
-				"error":   resp.Error,
-			}).Error("Failed to get channel")
-
-			continue
+		post := model.PostFromJson(strings.NewReader(event.Data["post"].(string)))
+		if post == nil {
+			log.Error("Failed to read post")
+			return
 		}
 
-		logger := log.WithFields(log.Fields{
-			"channel": allowedChannel,
-		})
+		matched := re.MatchString(post.Message)
+		if matched {
 
-		if event.Broadcast.ChannelId == channel.Id {
-			post := model.PostFromJson(strings.NewReader(event.Data["post"].(string)))
-			if post == nil {
-				logger.Error("Failed to read post")
-				continue
-			}
-
-			matched := re.MatchString(post.Message)
-			if matched {
-
-				go func() {
-					addStonksReaction(post, allowedChannel)
-				}()
-			}
+			go func() {
+				addStonksReaction(post, channel.Name)
+			}()
 		}
 	}
 }

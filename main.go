@@ -14,7 +14,6 @@ var client *model.Client4
 var webSocketClient *model.WebSocketClient
 
 var botUser *model.User
-var botTeam *model.Team
 
 // Documentation for the Go driver can be found
 // at https://godoc.org/github.com/mattermost/platform/model#Client
@@ -35,9 +34,6 @@ func main() {
 
 	// lets attempt to login to the Mattermost server as the bot user
 	LoginAsTheBotUser()
-
-	// Lets find our bot team
-	FindBotTeam()
 
 	// Lets start listening to some channels via the websocket!
 	webSocketClient, err := model.NewWebSocketClient4(viper.GetString("ws_server"), client.AuthToken)

@@ -37,13 +37,6 @@ func MakeSureServerIsRunning() {
 	}
 }
 
-func FindBotTeam() {
-	if team, resp := client.GetTeamByName(viper.GetString("team"), ""); resp.Error != nil {
-		log.WithField("team", viper.GetString("team")).Fatal("Failed to get the initial load or we do not appear to be a member of the team")
-	} else {
-		botTeam = team
-	}
-}
 func SetupGracefulShutdown() {
 	c := make(chan os.Signal, 1)
 	signal.Notify(c, os.Interrupt)
