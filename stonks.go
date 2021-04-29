@@ -14,7 +14,7 @@ import (
 
 func HandleMsgFromStonksChannel(event *model.WebSocketEvent) {
 
-	// Lets only reponded to messaged posted events
+	// Lets only respond to posted events
 	if event.Event != model.WEBSOCKET_EVENT_POSTED {
 		return
 	}
@@ -28,7 +28,7 @@ func HandleMsgFromStonksChannel(event *model.WebSocketEvent) {
 	re := regexp.MustCompile(`^ \*\*Deal won by(?:$|\W)`)
 
 	if Contains(viper.GetStringSlice("stonks.channels"), channel.Name) {
-		log.Debug("Channel is contained in stringSlice from config")
+		log.WithField("channel_id", channel.Name).Debug("Channel is contained in stringSlice from config")
 
 		post := model.PostFromJson(strings.NewReader(event.Data["post"].(string)))
 		if post == nil {
@@ -38,10 +38,11 @@ func HandleMsgFromStonksChannel(event *model.WebSocketEvent) {
 
 		matched := re.MatchString(post.Message)
 		if matched {
-
 			go func() {
 				addStonksReaction(post, channel.Name)
 			}()
+		} else {
+			log.WithField("message", post.Message).Debug("Message did not match the regex")
 		}
 	}
 }
